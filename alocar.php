@@ -109,13 +109,18 @@
     </div> 
 		<?php
 		    if (isset($_POST['cadastrar'])) {
-                //header('location:index.php');  
-                
-                $nome = $_POST['nome'];
-                $ferramenta = $_POST['ferramenta'];
-                $empresa = $_POST['empresa'];
-                $setor = $_POST['setor'];
+
                 $condicao = $_POST['condicao'];
+
+                if($condicao == "Defeituosa"){
+                    echo "<script>alert('Ferramenta com Defeito!')</script>";
+                }elseif($condicao == "Funcionando"){
+    
+                    $nome = $_POST['nome'];
+                    $ferramenta = $_POST['ferramenta'];
+                    $empresa = $_POST['empresa'];
+                    $setor = $_POST['setor'];
+                    $condicao = $_POST['condicao'];
 
                     $sqlE = "INSERT INTO alocacao (ferramenta, usuario, empresa, setor, status_saida) VALUES ('".$ferramenta."', '".$nome."','".$empresa."', '".$setor."', '".$condicao."')";
                     $queryE = mysqli_query($con, $sqlE);
@@ -129,6 +134,8 @@
 		          } else {
 		            echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
 		          }
+                }
+                    
             }
 		?>	
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -41,28 +41,28 @@
                         <td>".$result['data_saida']."</td>
                         <td>".$result['status_saida']."</td>
                         <td><a class='btn teal darken-4 modal-trigger' href='#modal1'><i class='material-icons right'>cached</i>Devolver</a></td>
+                        <div id='modal1' class='modal' style='height:230px;'>
+                        <form method='post' action='ExcluirEstoque.php'>
+                        <div class='modal-content'>
+                            <div class='input-field'>
+                                <select class='icons' name='condicao'>
+                                    <option disabled selected name='condicao'>Estado da Ferramenta</option>
+                                    <option>Funcionando</option>
+                                    <option>Defeituosa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                            <a name='devolver' href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."' class='modal-close waves-effect waves-green btn-flat'>Devolver</a>
+                        </div>
+                        </form>
+                        </div>
                     </tr>
                 ";
             }
         ?>
         </tbody>
       </table>
-      <div id='modal1' class='modal'>
-                <div class='modal-content'>
-                <form method='post' action='ExcluirEstoque.php'>
-                    <div class='input-field'>
-                        <select class='icons' name='condicao'>
-                            <option disabled selected name='condicao'>Estado da Ferramenta</option>
-                            <option>Funcionando</option>
-                            <option>Defeituosa</option>
-                        </select>
-                    </div>
-                </form>
-                </div>
-                <div class='modal-footer'>
-                <a name='devolver' href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."' class='modal-close waves-effect waves-green btn-flat'>Devolver</a>
-                </div>
-            </div>
     </div>
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
