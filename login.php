@@ -76,7 +76,7 @@
 			        	$_SESSION['pass']   = $result['senha'];
                     }
 			        
-			        header('location:cadFerramenta.php');
+			        header('location:index.php');
 			    }
 			    else{
 			    

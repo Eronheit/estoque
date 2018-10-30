@@ -1,4 +1,10 @@
 <?php
+
+// define("HOST", "mysql995.umbler.com:41890");
+// define("USER", "rootagritech");
+// define("PASS", "roottoor");
+// define("BD", "vendasagritech");
+
 	define("HOST", "localhost");
 	define("USER", "root");
 	define("PASS", "");

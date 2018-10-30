@@ -1,0 +1,65 @@
+/*body {
+    background-position: center center;
+    
+    background-repeat: no-repeat;
+     
+    background-attachment: fixed;
+ 
+    background-size: cover;
+   
+    background-image: url('../img/agricultura1.jpg');
+  }
+
+  .header b{
+    color: #00c853;
+  }
+
+  a{
+    cursor: pointer;
+  }
+
+  #logo img{
+    width: 100px;
+    display: block;
+    margin: 15px auto;
+  }
+
+  #logo h6{
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    display: block;
+    line-height: 3.1;
+    color: #00c853;
+  }
+
+  #li-parcela, #li-bloco, #li-cadplanta{
+    text-indent: 20px;
+  }
+
+  #plantasP, #plantasB{
+    display: none;
+  }
+
+  */
+
+  #plantasP, #plantasB{
+    display: none;
+  }
+
+  .header b{
+    color: #00c853;
+  }
+
+.greenIcon {color: #00c853;}
+
+main {
+    background-position: center center;
+    
+    background-repeat: no-repeat;
+     
+    background-attachment: fixed;
+ 
+    background-size: cover;
+   
+    background-image: url('../img/agricultura1.jpg');
+  }
