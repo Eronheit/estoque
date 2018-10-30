@@ -26,7 +26,7 @@
             <img src="img/photo1.png">
           </div>
           <a href="#!user"><img class="circle" src="img/Logo.jpg"></a>
-          <a href="#!name"><span class="white-text name">Cuide bem das suas plantas,</span></a>
+          <a href="#!name"><span class="white-text name">Gerencie bem suas ferramentas,</span></a>
           <a href="#!email"><span class="white-text email">
               <?php
                 if(isset($_SESSION['user'])){ 
@@ -162,7 +162,23 @@
         </a>
     </h2></div>
       <div class="row">
-          <div class="col l6 s12">
+            <div class="col l4 s12">
+                <div class="small-box blue-grey darken-4">
+                <div class="inner">
+                    <h3><?php
+                        $sql = "SELECT * FROM alocacao";
+                        $query = mysqli_query($con, $sql);
+                        echo mysqli_num_rows($query);
+                    ?></h3>
+                    <p>Alocados</p>
+                </div>
+                <div class="icon">
+                    <i class="ion-ios-folder"></i>
+                </div>
+                    <a href="?id=GerenciarEstoque" class="small-box-footer" class="animsition-link">Informações<i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+          </div>
+          <div class="col l4 s12">
             <div class="small-box blue-grey darken-4">
               <div class="inner">
                 <h3><?php
@@ -175,10 +191,10 @@
               <div class="icon">
                 <i class="ion-pin"></i>
               </div>
-                <a href="#" class="small-box-footer" class="animsition-link">Informações<i class="fa fa-arrow-circle-right"></i></a>
+                <a href="?id=conFerramenta" class="small-box-footer" class="animsition-link">Informações<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col l6 s12">
+          <div class="col l4 s12">
             <div class="small-box blue-grey darken-4">
               <div class="inner">
                 <h3><?php
@@ -191,7 +207,7 @@
               <div class="icon">
                 <i class="ion-ios-people"></i>
               </div>
-                <a href="#" class="small-box-footer" class="animsition-link">Informações<i class="fa fa-arrow-circle-right"></i></a>
+                <a href="?id=conUser" class="small-box-footer" class="animsition-link">Informações<i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -235,21 +251,19 @@
           </div>
         </footer>
 
-          <div class="fixed-action-btn horizontal tooltipped" data-position="top" dattooltipped data-position="top" data-delay="50" data-tooltip="Quick Links">
+          <div class="fixed-action-btn horizontal tooltipped" data-position="top" dattooltipped data-position="top" data-delay="50" data-tooltip="Alocação">
             <a class="btn-floating btn-large red">
-              <i class="large material-icons">mode_edit</i>
+              <i class="large material-icons">build</i>
             </a>
             <ul>
-              <li><a class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Handbook" href="#"><i class="material-icons">insert_chart</i></a></li>
-              <li><a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Staff Applications" href="#"><i class="material-icons">format_quote</i></a></li>
-              <li><a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Name Guidelines" href="#"><i class="material-icons">publish</i></a></li>
-              <li><a class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Issue Tracker" href="#"><i class="material-icons">attach_file</i></a></li>
-              <li><a class="btn-floating orange tooltipped" data-position="top" data-delay="50" data-tooltip="Support" href="#"><i class="material-icons">person</i></a></li>
+              <li><a class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Visualizar Alocação" href="?id=GerenciarEstoque"><i class="material-icons">visibility</i></a></li>
+              <li><a class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Devolver Ferramenta" href="?id=devolver"><i class="material-icons">check_circle</i></a></li>
+              <li><a class="btn-floating orange tooltipped" data-position="top" data-delay="50" data-tooltip="Cadastrar Alocação" href="?id=alocar"><i class="material-icons">add_circle</i></a></li>
             </ul>
           </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
         <script src="js/utils.js"></script>
         <script>
           // Hide sideNav

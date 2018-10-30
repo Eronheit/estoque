@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Out-2018 às 19:54
+-- Generation Time: 30-Out-2018 às 20:46
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -31,15 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `idadmin` int(11) NOT NULL,
   `usuario` varchar(100) NOT NULL,
-  `senha` varchar(100) NOT NULL
+  `senha` varchar(100) NOT NULL,
+  `image` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `admin`
 --
 
-INSERT INTO `admin` (`idadmin`, `usuario`, `senha`) VALUES
-(1, 'Cristiano', 'cristiano');
+INSERT INTO `admin` (`idadmin`, `usuario`, `senha`, `image`) VALUES
+(1, 'Cristiano', 'cristiano', 'bbad900e63b410d0e85bfa715b2f49d0.gif'),
+(2, 'Joseniltom', 'joseniltom', '77485cd6f1a72c981a46fa9527f38f60.gif');
 
 -- --------------------------------------------------------
 
@@ -62,12 +64,8 @@ CREATE TABLE `alocacao` (
 --
 
 INSERT INTO `alocacao` (`idalocacao`, `ferramenta`, `usuario`, `data_saida`, `empresa`, `setor`, `status_saida`) VALUES
-(7, 'Enxada', 'Eronaldo', '2018-10-26 17:45:11', 'Brisanet', 'Garagem', 'Defeituosa'),
-(8, 'Foice', 'Gustavo', '2018-10-26 17:45:32', 'Nossa Fruta', 'Furto Qualificado', 'Funcionando'),
-(9, 'Martelo', 'Eronaldo', '2018-10-26 17:46:09', 'AgriTech', 'Garagem', 'Funcionando'),
-(10, 'PÃ¡', 'Geraldo Alckmin', '2018-10-26 17:46:25', 'Nossa Fruta', 'Furto Qualificado', 'Funcionando'),
-(11, 'Maquita', 'Gustavo', '2018-10-26 17:46:48', 'AgriTech', 'ConstruÃ§Ã£o', 'Funcionando'),
-(12, '', '', '2018-10-26 17:52:24', '', '', 'Funcionando');
+(16, 'PÃ¡', 'Eronaldo', '2018-10-26 19:31:07', 'Brisanet', 'Cozinha', 'Funcionando'),
+(17, 'PÃ¡', 'Eronaldo', '2018-10-26 19:41:01', 'AgriTech', 'ConstruÃ§Ã£o', 'Funcionando');
 
 -- --------------------------------------------------------
 
@@ -87,11 +85,12 @@ CREATE TABLE `ferramenta` (
 --
 
 INSERT INTO `ferramenta` (`idferramenta`, `nome`, `situacao`, `status_saida`) VALUES
-(5, 'Martelo', 1, 'Funcionando'),
-(6, 'Foice', 1, 'Funcionando'),
-(7, 'Maquita', 1, 'Defeituosa'),
-(8, 'Enxada', 1, 'Funcionando'),
-(9, 'PÃ¡', 1, 'Funcionando');
+(5, 'Martelo', 0, 'Funcionando'),
+(6, 'Foice', 0, 'Defeituosa'),
+(7, 'Maquita', 0, 'Defeituosa'),
+(9, 'PÃ¡', 1, 'Funcionando'),
+(11, 'Papel Aluminio', 0, 'Funcionando'),
+(13, 'Caneta de Pescar', 0, 'Funcionando');
 
 -- --------------------------------------------------------
 
@@ -112,9 +111,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idusuario`, `nome`, `empresa`, `setor`) VALUES
 (10, 'Geraldo Alckmin', 'Brisanet', 'Furto Qualificado'),
-(11, 'Geraldo Alckmin', 'Brisanet', 'Cozinha'),
-(12, 'Eronaldo', 'Nossa Fruta', 'Garagem'),
-(13, 'Gustavo', 'Brisanet', 'ConstruÃ§Ã£o');
+(12, 'Eronaldo', 'Brisanet', 'Cozinha'),
+(13, 'Gustavo', 'Brisanet', 'ConstruÃ§Ã£o'),
+(14, 'Gabriel', 'AgriTech', 'GestÃ£o'),
+(15, 'Joao', 'Brisanet', 'AdministraÃ§Ã£o'),
+(16, 'Cristiano', 'Nossa Fruta', 'Garagem'),
+(17, 'Elivam', 'Nossa Fruta', 'ConstruÃ§Ã£o');
 
 --
 -- Indexes for dumped tables
@@ -152,25 +154,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `alocacao`
 --
 ALTER TABLE `alocacao`
-  MODIFY `idalocacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idalocacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `ferramenta`
 --
 ALTER TABLE `ferramenta`
-  MODIFY `idferramenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idferramenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

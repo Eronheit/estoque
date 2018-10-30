@@ -1,21 +1,4 @@
-<?php
-    require "conexao.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Cadastrar Usuário</title>
-	<link rel="icon" class="circle" href="img/icone.png"/>
-	<meta charset="utf-8">
-	<!-- <meta http-equiv="refresh" content="2"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style type="text/css" media="screen">
-    	body{background: #455a64;}
-    </style>
-</head>
-<body>
-<div class="container">
+<div class="row">
         <div class="row">
             <div class="col s12 m8 offset-m2">
                 <form class="login-form" method="post">
@@ -138,13 +121,3 @@
                     
             }
 		?>	
-  	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('select').formSelect();
-        });
-    </script>
-</body>
-</html>
