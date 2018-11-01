@@ -6,7 +6,7 @@
               <th>Empresa</th>
               <th>Setor</th>
               <th>Data Alocada</th>
-              <th>Status de Saída</th>
+              <th>Estado</th>
               <th>Ação</th>              
           </tr>
         </thead>
@@ -27,23 +27,24 @@
                         <td><a class='btn teal darken-4 modal-trigger' href='#modal1' class='modal-close waves-effect waves-green btn-flat'>Devolver</a></td>
                     </tr>
                     <div id='modal1' class='modal' style='height:230px'>
+                    <form method='get' action='ExcluirEstoque.php'>
                         <div class='modal-content'>
-                        <form method='post' action='ExcluirEstoque.php'>
                             <div class='input-field'>
                                 <select class='icons' name='condicao'>
                                     <option disabled selected name='condicao'>Estado da Ferramenta</option>
-                                    <option>".$result['idalocacao']."</option>
                                     <option>Funcionando</option>
                                     <option>Defeituosa</option>
                                 </select>
                             </div>
+                        </div>
+                            <div class='modal-footer'>
+                            <button name='devolver' type='submit' class='modal-close waves-effect waves-green btn-flat'>Devolver</button>
+                            </div>
                         </form>
-                        </div>
-                        <div class='modal-footer'>
-                        <button name='devolver' class='modal-close waves-effect waves-green btn-flat'><a href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."' class='modal-close waves-effect waves-green btn-flat'>Devolver</a></button>
-                        </div>
                     </div>
                 ";
+                //<a href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."'>Devolver</a>
+
             }
         ?>
         </tbody>

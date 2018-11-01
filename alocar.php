@@ -10,10 +10,10 @@
                         </div>
                         <div class="card-content">
                         <div class="input-field">
-                            <select class="icons" name="nome">
+                        
+                            <select class="icons" id="select" name="nome">
                                 <option disabled selected name="nome">Nome do Usuário</option>
-                                <?php
-                                
+                            <?php            
                                     $sqlUser = "SELECT * FROM usuarios";  
                                     $queryUser = mysqli_query($con, $sqlUser);
                                     while($result = mysqli_fetch_assoc($queryUser)){
@@ -21,18 +21,16 @@
                                         <option>'.$result['nome'].'</option>
                                         ';
 
-                                        //$id_usuario = $result['idusuario'];
                                     }
-                                
-                                ?>
-                            </select>
+                            ?>
+                        </select>
                         </div>
                         <div class="input-field">
                             <select class="icons" name="ferramenta">
                                 <option disabled selected name="ferramenta">Ferramenta</option>
                                 <?php
                                 
-                                    $sql = "SELECT * FROM ferramenta";  
+                                    $sql = "SELECT * FROM ferramenta WHERE status_saida = 'Funcionando' AND situacao = '0'";  
                                     $query = mysqli_query($con, $sql);
                                     while($result = mysqli_fetch_assoc($query)){
                                         echo '
@@ -43,39 +41,6 @@
                                     }
                                 
                                 ?>
-                            </select>
-                        </div>
-                        <div class="input-field">
-                            <select class="icons" name="empresa">
-                                <option disabled selected name="empresa">Escolha uma empresa</option>
-                                <option data-icon="img/Logo.jpg">AgriTech</option>
-                                <option data-icon="img/download.png">Brisanet</option>
-                                <option data-icon="img/p.jpg">Nossa Fruta</option>
-                            </select>
-                        </div>
-                        <div class="input-field">
-                            <select class="icons" name="setor">
-                                <option disabled selected name="setor">Setor</option>
-                                <?php
-                                
-                                    $sql = "SELECT * FROM usuarios";  
-                                    $query = mysqli_query($con, $sql);
-                                    while($result = mysqli_fetch_assoc($query)){
-                                        echo '
-                                            <option>'.$result['setor'].'</option>
-                                        ';
-
-                                        //$id_ferramenta = $result['idferramenta'];
-                                    }
-                                
-                                ?>
-                            </select>
-                        </div>
-                        <div class="input-field">
-                            <select class="icons" name="condicao">
-                                <option disabled selected name="condicao">Estado da Ferramenta</option>
-                                <option>Funcionando</option>
-                                <option>Defeituosa</option>
                             </select>
                         </div>
                         </div>
@@ -92,32 +57,63 @@
     </div> 
 		<?php
 		    if (isset($_POST['cadastrar'])) {
-
-                $condicao = $_POST['condicao'];
-
-                if($condicao == "Defeituosa"){
-                    echo "<script>alert('Ferramenta com Defeito!')</script>";
-                }elseif($condicao == "Funcionando"){
     
-                    $nome = $_POST['nome'];
                     $ferramenta = $_POST['ferramenta'];
-                    $empresa = $_POST['empresa'];
-                    $setor = $_POST['setor'];
-                    $condicao = $_POST['condicao'];
 
-                    $sqlE = "INSERT INTO alocacao (ferramenta, usuario, empresa, setor, status_saida) VALUES ('".$ferramenta."', '".$nome."','".$empresa."', '".$setor."', '".$condicao."')";
-                    $queryE = mysqli_query($con, $sqlE);
+                    $sql = "SELECT * FROM ferramenta WHERE nome = '".$ferramenta."'";
+                    $query = mysqli_query($con, $sql);
 
-                    $situacao = 1;
-                    $sqlF = "UPDATE ferramenta SET situacao='".$situacao."' WHERE nome = '".$ferramenta."'";
-                    $queryF = mysqli_query($con, $sqlF);
+                    $resultadoF = mysqli_fetch_assoc($query);
 
-		          if ($queryE > 0 && $queryF > 0) {
-		            echo "<script>alert('Alocação cadastrado!')</script>";
-		          } else {
-		            echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
-		          }
+                    if($resultadoF['status_saida'] == "Funcionando"){
+                        $objeto = $resultadoF['nome'];
+                        $condicao = $resultadoF['status_saida'];
+
+                        $situacao = 1;
+                        $sqlF = "UPDATE ferramenta SET situacao='".$situacao."' WHERE nome = '".$objeto."'";
+                        $queryF = mysqli_query($con, $sqlF);
+
+                        $sqlA = "INSERT INTO alocacao (ferramenta, status_saida) VALUES ('".$objeto."', '".$condicao."')";
+                        $queryA = mysqli_query($con, $sqlA);
+
+                        if ($queryF > 0 && $queryA > 0) {
+
+                            $u = $_POST['nome'];
+                            
+                            $user = "SELECT * FROM usuarios WHERE nome = '".$u."'";
+                            $pesquisa = mysqli_query($con, $user);
+                            $resultadoU = mysqli_fetch_assoc($pesquisa);
+
+                            if($pesquisa > 0){
+                                $f = $_POST['ferramenta'];
+                                $cliente = $resultadoU['nome'];
+                                $emp = $resultadoU['empresa'];
+                                $setor = $resultadoU['setor'];  
+
+                                $sqlW = "UPDATE alocacao SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
+                                $queryW = mysqli_query($con, $sqlW);
+                                    if($queryW > 0){
+                                        echo "<script>alert('Alocação cadastrado!')</script>";
+                                    }else{
+                                        echo "<script>alert('Erro no Update da alocação!')</script>";
+                                    }
+                            }
+                        } else {
+                            echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
+                        }
+                    }
+                    // $sqlE = "INSERT INTO alocacao (ferramenta, usuario, empresa, setor, status_saida) VALUES ('".$ferramenta."', '".$nome."','".$empresa."', '".$setor."', '".$condicao."')";
+                    // $queryE = mysqli_query($con, $sqlE);
+
+                    // $situacao = 1;
+                    // $sqlF = "UPDATE ferramenta SET situacao='".$situacao."' WHERE nome = '".$ferramenta."'";
+                    // $queryF = mysqli_query($con, $sqlF);
+
+		        //   if ($queryE > 0 && $queryF > 0) {
+		        //     echo "<script>alert('Alocação cadastrado!')</script>";
+		        //   } else {
+		        //     echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
+		        //   }
                 }
                     
-            }
-		?>	
+        ?>	
