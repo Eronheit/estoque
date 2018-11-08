@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>Ferramenta</th>
+            <th>Quantidade</th>
             <th>Status de Saída</th>
             <th>Estado</th>
             <th>Excluir</th>
@@ -17,6 +18,7 @@
             echo"
                 <tr>
                     <td>".$result['nome']."</td>
+                    <td>".$result['qnt']."</td>
                     <td>".$result['status_saida']."</td>
             ";
             if($result['situacao'] == "0" && $result['status_saida'] == "Funcionando"){

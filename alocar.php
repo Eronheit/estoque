@@ -54,6 +54,7 @@
 		    if (isset($_POST['cadastrar'])) {
                     error_reporting(0);
                     $ferramenta = $_POST['ferramenta'];
+                    $qntP = $_POST['qntP'];
 
                     $sql = "SELECT * FROM ferramenta WHERE nome = '".$ferramenta."'";
                     $query = mysqli_query($con, $sql);
@@ -63,15 +64,20 @@
                     if($resultadoF['status_saida'] == "Funcionando"){
                         $objeto = $resultadoF['nome'];
                         $condicao = $resultadoF['status_saida'];
+                        $qnt = $resultadoF['qnt'];
 
                         $situacao = 1;
-                        $sqlF = "UPDATE ferramenta SET situacao='".$situacao."' WHERE nome = '".$objeto."'";
+                        $total = $qnt - $qntP;
+                        $sqlF = "UPDATE ferramenta SET qnt = '"$total"', situacao='".$situacao."' WHERE nome = '".$objeto."'";
                         $queryF = mysqli_query($con, $sqlF);
 
-                        $sqlA = "INSERT INTO alocacao (ferramenta, status_saida) VALUES ('".$objeto."', '".$condicao."')";
+                        $sqlA = "INSERT INTO alocacao (ferramenta, qnt, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$condicao."')";
                         $queryA = mysqli_query($con, $sqlA);
 
-                        if ($queryF > 0 && $queryA > 0) {
+                        $sqlH = "INSERT INTO historico (ferramenta, qnt, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$condicao."')";
+                        $queryH = mysqli_query($con, $sqlH);
+
+                        if ($queryF > 0 && $queryA > 0 && $queryH > 0) {
 
                             $u = $_POST['nome'];
                             
@@ -87,7 +93,11 @@
 
                                 $sqlW = "UPDATE alocacao SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
                                 $queryW = mysqli_query($con, $sqlW);
-                                    if($queryW > 0){
+
+                                $sqlHH = "UPDATE historico SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
+                                $queryHH = mysqli_query($con, $sqlHH);
+
+                                    if($queryW > 0 && $queryHH > 0){
                                         echo "<script>alert('Alocação cadastrado!')</script>";
                                     }else{
                                         echo "<script>alert('Erro no Update da alocação!')</script>";

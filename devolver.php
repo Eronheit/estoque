@@ -24,7 +24,7 @@
                         <td>".$result['setor']."</td>
                         <td>".$result['data_saida']."</td>
                         <td>".$result['status_saida']."</td>
-                        <td><a class='btn orange accent-4' href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."'>Devolver</a></td>
+                        <td><a class='btn orange accent-4' href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."&&qnt=".$result['qnt']."'>Devolver</a></td>
                     </tr>
                 ";
                 //<a href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."'>Devolver</a>
