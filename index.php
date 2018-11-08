@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="index/index.css">
   </head>
 
-  <body style="background-image: url('img/estoque.jpg');">
+  <body style="background-image: url('img/estoque.jpg'); background-position: fixed;">
     <!-- github fork banner -->
     <ul id="slide-out" class="side-nav fixed blue-grey darken-4">
       <li>
@@ -41,7 +41,7 @@
         </div>
       </li>
 
-      <li><a class="active white-text" href="login.html"><i class="material-icons green-text">reply</i>Sair</a></li>
+      <li><a class="active white-text" href="login.php"><i class="material-icons green-text">reply</i>Sair</a></li>
       <li><div class="divider"></div></li>
 
       <li><a class="subheader white-text">Gestão</a></li>

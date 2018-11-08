@@ -24,15 +24,15 @@
                     <td>".$result['setor']."</td>
             ";
         
-            // $user = "SELECT * FROM alocacao";
+            $user = "SELECT * FROM alocacao";
         
-            // $users = mysqli_query($con, $user);
+            $users = mysqli_query($con, $user);
         
-            // while($resposta = mysqli_fetch_assoc($users)){
-            //         if(($resposta['nome'] != $result['nome']) && ($resposta['empresa'] != $result['empresa']) && ($resposta['setor'] != $result['setor'])){
-            //             echo"<td><a href='ExcluirUser.php?idusuario=".$result['idusuario']."' class='btn orange accent-4'><i class='material-icons'>delete</i></a></td>";
-            //         }
-            // }
+            while($resposta = mysqli_fetch_assoc($users)){
+                if(($result['nome'] != $resposta['usuario']) && ($resposta['empresa'] != $result['empresa']) && ($resposta['setor'] != $result['setor'])){
+                    echo"<td><a href='ExcluirUser.php?idusuario=".$result['idusuario']."' class='btn orange accent-4'><i class='material-icons'>delete</i></a></td>";
+                }
+            }
         
                 echo"</tr>";
         

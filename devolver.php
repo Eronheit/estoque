@@ -24,24 +24,8 @@
                         <td>".$result['setor']."</td>
                         <td>".$result['data_saida']."</td>
                         <td>".$result['status_saida']."</td>
-                        <td><a class='btn teal darken-4 modal-trigger' href='#modal1' class='modal-close waves-effect waves-green btn-flat'>Devolver</a></td>
+                        <td><a class='btn orange accent-4' href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."'>Devolver</a></td>
                     </tr>
-                    <div id='modal1' class='modal' style='height:230px'>
-                    <form method='get' action='ExcluirEstoque.php'>
-                        <div class='modal-content'>
-                            <div class='input-field'>
-                                <select class='icons' name='condicao'>
-                                    <option disabled selected name='condicao'>Estado da Ferramenta</option>
-                                    <option>Funcionando</option>
-                                    <option>Defeituosa</option>
-                                </select>
-                            </div>
-                        </div>
-                            <div class='modal-footer'>
-                            <button name='devolver' type='submit' class='modal-close waves-effect waves-green btn-flat'>Devolver</button>
-                            </div>
-                        </form>
-                    </div>
                 ";
                 //<a href='ExcluirEstoque.php?idalocacao=".$result['idalocacao']."&&ferramenta=".$result['ferramenta']."'>Devolver</a>
 

@@ -3,11 +3,6 @@
             <div class="col s12 m8 offset-m2">
                 <form class="login-form" method="post">
                     <div class="card">
-                        <div class="card-header center">
-                            <span class="card-title blue-text">
-                                <h3 class="blue-text">Cadastrar Estoque</h3>
-                            </span>
-                        </div>
                         <div class="card-content">
                         <div class="input-field">
                         
@@ -57,7 +52,7 @@
     </div> 
 		<?php
 		    if (isset($_POST['cadastrar'])) {
-    
+                    error_reporting(0);
                     $ferramenta = $_POST['ferramenta'];
 
                     $sql = "SELECT * FROM ferramenta WHERE nome = '".$ferramenta."'";

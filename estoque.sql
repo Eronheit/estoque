@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Out-2018 às 20:46
+-- Generation Time: 08-Nov-2018 às 19:15
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -64,8 +64,10 @@ CREATE TABLE `alocacao` (
 --
 
 INSERT INTO `alocacao` (`idalocacao`, `ferramenta`, `usuario`, `data_saida`, `empresa`, `setor`, `status_saida`) VALUES
-(16, 'PÃ¡', 'Eronaldo', '2018-10-26 19:31:07', 'Brisanet', 'Cozinha', 'Funcionando'),
-(17, 'PÃ¡', 'Eronaldo', '2018-10-26 19:41:01', 'AgriTech', 'ConstruÃ§Ã£o', 'Funcionando');
+(5, 'Martelo', 'Luis Gustavo Souza Maciel ', '2018-11-05 17:51:24', 'Nossa Fruta', 'Cozinha', 'Funcionando'),
+(7, 'Maquita', 'Eronaldo Peixoto de Aquino ', '2018-11-08 17:31:43', 'Brisanet', 'ConstruÃ§Ã£o', 'Funcionando'),
+(8, 'Vestido', 'Luis Gustavo Souza Maciel ', '2018-11-08 17:31:50', 'Nossa Fruta', 'Cozinha', 'Funcionando'),
+(9, 'Geraldo Alckmin', 'Cristiano Benevides', '2018-11-08 17:33:17', 'AgriTech', 'GestÃ£o', 'Funcionando');
 
 -- --------------------------------------------------------
 
@@ -85,12 +87,10 @@ CREATE TABLE `ferramenta` (
 --
 
 INSERT INTO `ferramenta` (`idferramenta`, `nome`, `situacao`, `status_saida`) VALUES
-(5, 'Martelo', 0, 'Funcionando'),
-(6, 'Foice', 0, 'Defeituosa'),
-(7, 'Maquita', 0, 'Defeituosa'),
-(9, 'PÃ¡', 1, 'Funcionando'),
-(11, 'Papel Aluminio', 0, 'Funcionando'),
-(13, 'Caneta de Pescar', 0, 'Funcionando');
+(6, 'Maquita', 1, 'Funcionando'),
+(7, 'Vestido', 1, 'Funcionando'),
+(8, 'Geraldo Alckmin', 1, 'Funcionando'),
+(9, 'Serra Circular', 0, 'Funcionando');
 
 -- --------------------------------------------------------
 
@@ -110,13 +110,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `nome`, `empresa`, `setor`) VALUES
-(10, 'Geraldo Alckmin', 'Brisanet', 'Furto Qualificado'),
-(12, 'Eronaldo', 'Brisanet', 'Cozinha'),
-(13, 'Gustavo', 'Brisanet', 'ConstruÃ§Ã£o'),
-(14, 'Gabriel', 'AgriTech', 'GestÃ£o'),
-(15, 'Joao', 'Brisanet', 'AdministraÃ§Ã£o'),
-(16, 'Cristiano', 'Nossa Fruta', 'Garagem'),
-(17, 'Elivam', 'Nossa Fruta', 'ConstruÃ§Ã£o');
+(1, 'Eronaldo Peixoto de Aquino ', 'Brisanet', 'ConstruÃ§Ã£o'),
+(2, 'Luis Gustavo Souza Maciel ', 'Nossa Fruta', 'Cozinha'),
+(3, 'Josimar Martins Pereira Junior', 'AgriTech', 'Agoador'),
+(4, 'Josenildo Henrique Gurgel de Almeida', 'AgriTech', 'Engenharia'),
+(5, 'Cristiano Benevides', 'AgriTech', 'GestÃ£o');
 
 --
 -- Indexes for dumped tables
@@ -160,19 +158,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `alocacao`
 --
 ALTER TABLE `alocacao`
-  MODIFY `idalocacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idalocacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ferramenta`
 --
 ALTER TABLE `ferramenta`
-  MODIFY `idferramenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idferramenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

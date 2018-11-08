@@ -39,8 +39,7 @@
                                 <div class="col s12 m4 l3">
                                     <div class="input-field">
                                         <label>
-                                            <input type="checkbox" name="checkbox">
-                                            <span>Lembrar</span>
+                                            <a onclick='mudaSenha()'><i id="olho" class="material-icons">visibility</i></a>
                                         </label>
                                     </div>
                                 </div>
@@ -89,5 +88,19 @@
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        
+        function mudaSenha(){
+            if(document.getElementById('olho').innerText == 'visibility'){
+                document.getElementById("password").type = 'text';
+            
+                document.getElementById('olho').innerText = 'visibility_off'
+            }
+            else{
+                document.getElementById('password').type = 'password';
+                document.getElementById('olho').innerText = 'visibility'
+            }
+        }
+    </script>
 </body>
 </html>
