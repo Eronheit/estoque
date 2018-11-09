@@ -2,6 +2,7 @@
         <thead>
           <tr>
               <th>Ferramenta</th>
+              <th>Quantidade</th>
               <th>Responsável</th>
               <th>Empresa</th>
               <th>Setor</th>
@@ -18,6 +19,7 @@
                 echo"
                     <tr>
                         <td>".$result['ferramenta']."</td>
+                        <td>".$result['qnt']." ".$result['sigla']."</td>
                         <td>".$result['usuario']."</td>
                         <td>".$result['empresa']."</td>
                         <td>".$result['setor']."</td>

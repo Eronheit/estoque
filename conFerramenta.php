@@ -18,7 +18,7 @@
             echo"
                 <tr>
                     <td>".$result['nome']."</td>
-                    <td>".$result['qnt']."</td>
+                    <td>".$result['qnt']." ".$result['sigla']."</td>
                     <td>".$result['status_saida']."</td>
             ";
             if($result['situacao'] == "0" && $result['status_saida'] == "Funcionando"){

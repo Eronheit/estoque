@@ -101,10 +101,21 @@
                 <div class="container">
                     <div class="container">
                         <div class="input-field">
-                            <input id="icon_prefix" type="text" name="nome" class="validate" data-length="15">
+                            <input id="icon_prefix" type="text" name="nome" class="validate" data-length="30">
                             <label for="icon_prefix">Nome da ferramenta</label>
                         </div>
-                            
+                        <div class="input-field">
+                            <input id="icon_prefix" type="number" name="qnt" class="validate" data-length="15">
+                            <label for="icon_prefix">Quantidade</label>
+                        </div> 
+                        <div class="input-field col s12 m6">
+                            <input type="select" id="cond" name="sigla" list="Sigla" placeholder="Unidade" class="validate">
+                            <datalist id="Sigla">
+                                <option>Und</option>
+                                <option>M</option>
+                                <option>L</option>
+                            </datalist>
+                        </div> 
                         <div class="input-field col s12 m6">
                             <input type="select" id="cond" name="condicao" list="Condicao" placeholder="Estado da Ferramenta" class="validate">
                             <datalist id="Condicao">
@@ -129,7 +140,7 @@
                 <div class="container">
                     <div class="container">
                         <div class="input-field">
-                            <input id="icon_prefix" type="text" name="user" class="validate" data-length="15">
+                            <input id="icon_prefix" type="text" name="user" class="validate" data-length="30">
                             <label for="icon_prefix">Nome do Usuário</label>
                         </div>
                         <div class="input-field">

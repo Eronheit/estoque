@@ -5,8 +5,9 @@
             $situacao = 0;
             $condicao = $_POST['condicao'];
             $qnt = $_POST['qnt'];
+            $sigla = $_POST['sigla'];
 
-        $sql = "INSERT INTO ferramenta (nome, qnt, situacao, status_saida) VALUES ('".$nome."', '".$qnt."', '".$situacao."','".$condicao."')";
+        $sql = "INSERT INTO ferramenta (nome, qnt, sigla, situacao, status_saida, view) VALUES ('".$nome."', '".$qnt."', '".$sigla."', '".$situacao."','".$condicao."', '0')";
 
         $query = mysqli_query($con, $sql);
 

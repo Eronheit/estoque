@@ -4,7 +4,7 @@
             <th>Nome</th>
             <th>Empresa</th>
             <th>Setor</th>
-            <!-- <th>Ação</th>               -->
+            <th>Excluir</th>              
         </tr>
     </thead>
 
