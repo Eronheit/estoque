@@ -21,7 +21,7 @@
                         </select>
                         </div>
                         <div class="input-field">
-                            <select class="icons" name="ferramenta">
+                            <select class="icons" name="ferramenta" onchange="ola()">
                                 <option disabled selected name="ferramenta">Ferramenta</option>
                                 <?php
                                 
@@ -29,12 +29,13 @@
                                     $query = mysqli_query($con, $sql);
                                     while($result = mysqli_fetch_assoc($query)){
                                         echo '
-                                            <option>'.$result['nome'].'</option>
+                                            <option><label>'.$result["nome"].'</label><label style="float:right">'.$result["qnt"].'</label></option>
                                         ';
+                                        $id_ferramenta = $result['idferramenta'];
 
-                                        //$id_ferramenta = $result['idferramenta'];
+                                        // echo "<script>function ola(){document.getElementById('idd').innerText=".$id_ferramenta."}</script>";
                                     }
-                                
+                                    
                                 ?>
                             </select>
                         </div>
@@ -50,6 +51,7 @@
                             </div>
                         </div>
                     </div>
+                    <label type="text" id='idd'></label>
                 </form>
             </div>
         </div> 
@@ -65,7 +67,7 @@
 
                     $resultadoF = mysqli_fetch_assoc($query);
 
-                    if ($resultadoF['view'] != "0"){   
+                    // if ($resultadoF['view'] != "0"){   
                         if($resultadoF['status_saida'] == "Funcionando"){
                             $objeto = $resultadoF['nome'];
                             $condicao = $resultadoF['status_saida'];
@@ -76,103 +78,117 @@
                             $total = $qnt - $qntP;
                             $view = $resultadoF['view'];
                             $tview = $view + 1;
-                            if($total > -1){
+                            
+                            $u = $_POST['nome'];
+                                    
+                            $user = "SELECT * FROM usuarios WHERE nome = '".$u."'";
+                            $pesquisa = mysqli_query($con, $user);
+                            $resultadoU = mysqli_fetch_assoc($pesquisa);
+
+                            $f = $_POST['ferramenta'];
+                            $cliente = $resultadoU['nome'];
+                            $emp = $resultadoU['empresa'];
+                            $setor = $resultadoU['setor']; 
+                            if($total >= 0){
                                 $sqlF = "UPDATE ferramenta SET situacao='".$situacao."', qnt='".$total."', view='".$tview."' WHERE nome = '".$objeto."'";
                                 $queryF = mysqli_query($con, $sqlF);
     
-                                $sqlA = "INSERT INTO alocacao (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
+                                $sqlA = "INSERT INTO alocacao (ferramenta, qnt, sigla, usuario, empresa, setor, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$cliente."', '".$emp."', '".$setor."', '".$condicao."')";
                                 $queryA = mysqli_query($con, $sqlA);
     
-                                $sqlH = "INSERT INTO historico (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
+                                $sqlH = "INSERT INTO historico (ferramenta, qnt, sigla, usuario, empresa, setor, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$cliente."', '".$emp."', '".$setor."', '".$condicao."')";
                                 $queryH = mysqli_query($con, $sqlH);
     
                                 if ($queryF > 0 && $queryA > 0 && $queryH > 0) {
-    
-                                    $u = $_POST['nome'];
+                                    echo "<script>alert('Alocação cadastrado!')</script>";
+                                }
+                                else{
+                                    echo "<script>alert('Erro no Update da alocação!')</script>";
+                                }
                                     
-                                    $user = "SELECT * FROM usuarios WHERE nome = '".$u."'";
-                                    $pesquisa = mysqli_query($con, $user);
-                                    $resultadoU = mysqli_fetch_assoc($pesquisa);
     
-                                    if($pesquisa > 0){
+                                //     if($pesquisa > 0){
     
-                                        $f = $_POST['ferramenta'];
-                                        $cliente = $resultadoU['nome'];
-                                        $emp = $resultadoU['empresa'];
-                                        $setor = $resultadoU['setor'];  
-                                        //parei aqui!!!!!!!
-                                        $sqlW = "UPDATE alocacao SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."' AND qnt = '".$total."'";
-                                        $queryW = mysqli_query($con, $sqlW);
+                                         
+                                //         //parei aqui!!!!!!!
+                                //         $sqlW = "INSERT INTO alocacao (usuario, empresa, setor) VALUES ('".$cliente."', '".$emp."', '".$setor."')";
+                                //         $queryW = mysqli_query($con, $sqlW);
     
-                                        $sqlHH = "UPDATE historico SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."' AND qnt = '".$total."'";
-                                        $queryHH = mysqli_query($con, $sqlHH);
+                                //         // $sqlHH = "UPDATE historico SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE idalocacao = '".$idmaxx."'";
+                                //         // $queryHH = mysqli_query($con, $sqlHH);
     
-                                            if($queryW > 0 && $queryHH > 0){
-                                                echo "<script>alert('Alocação cadastrado!')</script>";
-                                            }else{
-                                                echo "<script>alert('Erro no Update da alocação!')</script>";
-                                            }
-                                    }
-                                } else {
-                                    echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
-                                }
-                            }else{
-                                echo "<script>alert('Não tem quantidade de ferramenta disponivel!')</script>";
-                            }
+                                //             if($queryW > 0){
+                                //                 echo "<script>alert('Alocação cadastrado!')</script>";
+                                //             }else{
+                                //                 echo "<script>alert('Erro no Update da alocação!')</script>";
+                                //             }
+                                //     }
+                                // } else {
+                                //     echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
+                                // }
+                            // }
+                            // else{
+                            //     echo "<script>alert('Não tem quantidade de ferramenta disponivel!')</script>";
+                            // }
                         }
-                    }else if($resultadoF['view'] == "0"){
-                        if($resultadoF['status_saida'] == "Funcionando"){
-                            $objeto = $resultadoF['nome'];
-                            $condicao = $resultadoF['status_saida'];
-                            $qnt = $resultadoF['qnt'];
-                            $sigla = $resultadoF['sigla'];
+                        else{
+                            echo "<script>alert('Não tem quantidade de ferramenta disponivel!')</script>";
+                        }
+                    // }
+                    // else if($resultadoF['view'] == "0"){
+                    //     if($resultadoF['status_saida'] == "Funcionando"){
+                    //         $objeto = $resultadoF['nome'];
+                    //         $condicao = $resultadoF['status_saida'];
+                    //         $qnt = $resultadoF['qnt'];
+                    //         $sigla = $resultadoF['sigla'];
 
-                            $situacao = 1;
-                            $total = $qnt - $qntP;
-                            $view = $resultadoF['view'];
-                            $tview = $view + 1;
-                            if($total > -1){
-                            $sqlF = "UPDATE ferramenta SET qnt = '".$total."', situacao='".$situacao."', view='".$tview."' WHERE nome = '".$objeto."'";
-                            $queryF = mysqli_query($con, $sqlF);
+                    //         $situacao = 1;
+                    //         $total = $qnt - $qntP;
+                    //         $view = $resultadoF['view'];
+                    //         $tview = $view + 1;
+                    //         if($total > -1){
+                    //         $sqlF = "UPDATE ferramenta SET qnt = '".$total."', situacao='".$situacao."', view='".$tview."' WHERE nome = '".$objeto."'";
+                    //         $queryF = mysqli_query($con, $sqlF);
 
-                            $sqlA = "INSERT INTO alocacao (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
-                            $queryA = mysqli_query($con, $sqlA);
+                    //         $sqlA = "INSERT INTO alocacao (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
+                    //         $queryA = mysqli_query($con, $sqlA);
 
-                            $sqlH = "INSERT INTO historico (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
-                            $queryH = mysqli_query($con, $sqlH);
+                    //         $sqlH = "INSERT INTO historico (ferramenta, qnt, sigla, status_saida) VALUES ('".$objeto."', '".$qntP."', '".$sigla."', '".$condicao."')";
+                    //         $queryH = mysqli_query($con, $sqlH);
 
-                            if ($queryF > 0 && $queryA > 0 && $queryH > 0) {
+                    //         if ($queryF > 0 && $queryA > 0 && $queryH > 0) {
 
-                                $u = $_POST['nome'];
+                    //             $u = $_POST['nome'];
                                 
-                                $user = "SELECT * FROM usuarios WHERE nome = '".$u."'";
-                                $pesquisa = mysqli_query($con, $user);
-                                $resultadoU = mysqli_fetch_assoc($pesquisa);
+                    //             $user = "SELECT * FROM usuarios WHERE nome = '".$u."'";
+                    //             $pesquisa = mysqli_query($con, $user);
+                    //             $resultadoU = mysqli_fetch_assoc($pesquisa);
 
-                                if($pesquisa > 0){
-                                    $f = $_POST['ferramenta'];
-                                    $cliente = $resultadoU['nome'];
-                                    $emp = $resultadoU['empresa'];
-                                    $setor = $resultadoU['setor'];  
+                    //             if($pesquisa > 0){
+                    //                 $f = $_POST['ferramenta'];
+                    //                 $cliente = $resultadoU['nome'];
+                    //                 $emp = $resultadoU['empresa'];
+                    //                 $setor = $resultadoU['setor'];  
 
-                                    $sqlW = "UPDATE alocacao SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
-                                    $queryW = mysqli_query($con, $sqlW);
+                    //                 $sqlW = "UPDATE alocacao SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
+                    //                 $queryW = mysqli_query($con, $sqlW);
 
-                                    $sqlHH = "UPDATE historico SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
-                                    $queryHH = mysqli_query($con, $sqlHH);
+                    //                 $sqlHH = "UPDATE historico SET usuario='".$cliente."', empresa='".$emp."', setor='".$setor."' WHERE ferramenta = '".$f."'";
+                    //                 $queryHH = mysqli_query($con, $sqlHH);
 
-                                        if($queryW > 0 && $queryHH > 0){
-                                            echo "<script>alert('Alocação cadastrado!')</script>";
-                                        }else{
-                                            echo "<script>alert('Erro no Update da alocação!')</script>";
-                                        }
-                                }
-                            } else {
-                                echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
-                            }
-                        }
-                        }
-                    }
+                    //                     if($queryW > 0 && $queryHH > 0){
+                    //                         echo "<script>alert('Alocação cadastrado!')</script>";
+                    //                     }else{
+                    //                         echo "<script>alert('Erro no Update da alocação!')</script>";
+                    //                     }
+                    //             }
+                    //         } else {
+                    //             echo "<script>alert('Erro ao cadastrar Alocação!')</script>";
+                    //         }
+                    //     }
+                    //     }
+                    // }
                 }
+            }
                     
         ?>	
